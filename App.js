@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Text,
   View,
@@ -6,11 +6,10 @@ import {
   SafeAreaView,
   Platform,
   StatusBar,
-} from 'react-native';
-import Constants from 'expo-constants';
-import { Focus } from './src/features/Focus';
-
-import { colors } from './src/utils/colors';
+} from "react-native";
+import { Focus } from "./src/features/Focus";
+import { Timer } from "./src/features/Timer";
+import { colors } from "./src/utils/colors";
 
 export default function App() {
   const [currentSubject, setCurrentSubject] = React.useState(null);
@@ -19,7 +18,11 @@ export default function App() {
       {!currentSubject ? (
         <Focus addSubject={setCurrentSubject} />
       ) : (
-        <Text style={{color: colors.white}}>Here will be a timer for {currentSubject}</Text>
+        <Timer
+          focusSubject={currentSubject}
+          onTimerEnd={() => {}}
+          clearSubject={() => {}}
+        />
       )}
     </SafeAreaView>
   );
@@ -28,7 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     backgroundColor: colors.darkBlue,
   },
 });
