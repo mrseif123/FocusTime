@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Text,
   View,
@@ -7,21 +8,30 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+
 import { Focus } from "./src/features/Focus";
 import { Timer } from "./src/features/Timer";
+import { FocusHistory } from "./src/features/History";
+
 import { colors } from "./src/utils/colors";
 
 export default function App() {
   const [currentSubject, setCurrentSubject] = React.useState(null);
+  const [history, setHistory] = React.useState([]);
   return (
     <SafeAreaView style={styles.container}>
       {!currentSubject ? (
-        <Focus addSubject={setCurrentSubject} />
+        <>
+          <Focus addSubject={setCurrentSubject} />
+          <FocusHistory history={history} />
+        </>
       ) : (
         <Timer
           focusSubject={currentSubject}
-          onTimerEnd={() => {}}
-          clearSubject={() => {}}
+          onTimerEnd={(subject) => {
+            setHistory([...history, subject]);
+          }}
+          clearSubject={() => setCurrentSubject(null)}
         />
       )}
     </SafeAreaView>
