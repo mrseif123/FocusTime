@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Platform, Vibration } from "react-native";
 import { useKeepAwake } from "expo-keep-awake";
-import { Countdown } from "../components/COuntdown";
+import { Countdown } from "../components/Countdown";
 import { RoundedButton } from "../components/RoundedButton";
 import { ProgressBar } from "react-native-paper";
-import { Timing } from "./Timig";
+import { Timing } from "./Timing";
 import { spacing } from "../utils/sizes";
 import { colors } from "../utils/colors";
 
